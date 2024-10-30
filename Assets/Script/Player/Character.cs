@@ -3,18 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Player : MonoBehaviour
+public class Character : PartyBehaviour
 {
     [SerializeField] private NavMeshAgent agent;
     private Movement movement;
     private Vector3 destination;
+    [SerializeField] private GameObject characterReachMarker;
     [SerializeField] private GameObject destinationMarker;
+    private int characterReachRadius;
     [SerializeField] private CharacterStatus characterStatus;
     [SerializeField] private Loadout characterLoadout;
+    [SerializeField] private ActionList actionList;
 
     private void Awake()
     {
         characterStatus.character = this;
+        actionList.character = this;
         movement = new(transform.position);
         setDestination(this.transform.position);
     }
@@ -37,6 +41,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    public ActionList GetActionList()
+    {
+        return actionList;
+    }
+
     public Loadout GetLoadout()
     {
         return characterLoadout;
@@ -51,6 +60,16 @@ public class Player : MonoBehaviour
     public NavMeshAgent getAgent() { return agent; }
 
     public Vector3 getDestination() { return this.destination; }
+
+    public void setCharacterReachRadiusActive(float radius)
+    {
+        this.characterReachMarker.SetActive(true);
+        this.characterReachMarker.transform.localScale = new Vector3(radius*2,0.1f,radius*2);
+    }
+    public void setCharacterReachRadiusDeactive()
+    {
+        this.characterReachMarker.SetActive(false);
+    }
     public void setDestination(Vector3 destination)
     {
         this.destination = destination;
@@ -71,5 +90,5 @@ public class Player : MonoBehaviour
 
 public abstract class CharacterBehaviour: MonoBehaviour
 {
-    [HideInInspector] public Player character;
+    [HideInInspector] public Character character;
 }

@@ -28,4 +28,9 @@ public class CharacterStatus : CharacterBehaviour
     {
         return baseArmorClass + abilityScore.GetDexterityModifier() + character.GetLoadout().GetArmor().armorClass;
     }
+
+    public AbilityScore GetAbilityScore()
+    {
+        return this.abilityScore;
+    }
 }

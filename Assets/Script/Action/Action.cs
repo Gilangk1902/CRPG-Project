@@ -2,17 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Action : MonoBehaviour
+public abstract class Action : ActionListBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public abstract void ActionControl();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public abstract float GetRange();
 }

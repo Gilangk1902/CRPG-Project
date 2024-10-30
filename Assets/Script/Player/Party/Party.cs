@@ -4,32 +4,61 @@ using UnityEngine;
 
 public class Party : MonoBehaviour
 {
-    [SerializeField] private Player selectedCharacter;
-    [SerializeField] private Player slot1;
-    [SerializeField] private Player slot2;
-    [SerializeField] private Player slot3;
-    [SerializeField] private Player slot4;
+    [SerializeField] private bool isWaitingForAction;
 
+    [SerializeField] private PlayerControl playerControl;
+
+    [SerializeField] private Character selectedCharacter;
+    [SerializeField] private Character partySlot1;
+    [SerializeField] private Character partySlot2;
+    [SerializeField] private Character partySlot3;
+    [SerializeField] private Character partySlot4;
+
+    private void Awake()
+    {
+        isWaitingForAction = false;
+        this.selectedCharacter = this.partySlot1;
+        selectedCharacter.party= this;
+        playerControl.party= this;
+    }
     private void Start()
     {
-        this.selectedCharacter = this.slot1;
+        
     }
 
     private void Update()
     {
-        changeSelectedCharacter();
+        if(!isWaitingForAction)
+        {
+            changeSelectedCharacter();
+        }
     }
 
     private void changeSelectedCharacter()
     {
         if(Input.GetKeyUp(KeyCode.Alpha1)) { 
-            selectedCharacter = slot1;
+            selectedCharacter = partySlot1;
         }        
         if(Input.GetKeyUp(KeyCode.Alpha2))
         {
-            selectedCharacter = slot2;
+            selectedCharacter = partySlot2;
         }
     }
 
-    public Player getSelectedCharacter() { return selectedCharacter; }
+    public Character getSelectedCharacter() { return selectedCharacter; }
+
+    public void SetIsWaitingForAction(bool value)
+    {
+        this.isWaitingForAction = value;
+    }
+
+    public bool GetIsWaitingForAction()
+    {
+        return this.isWaitingForAction;
+    }
+}
+
+public abstract class PartyBehaviour: MonoBehaviour
+{
+    [HideInInspector] public Party party;
 }

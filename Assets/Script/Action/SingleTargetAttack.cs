@@ -19,10 +19,9 @@ public class SingleTargetAttack : Action
                 {
                     float distance = Vector3.Distance(actionList.character.transform.position, hit.collider.transform.position);
 
-                    // Check if the target is within the attack radius
                     if (distance <= meleeRange)
                     {
-                        Debug.Log(actionList.character.name + " Attacked " + hit.collider.gameObject.name + " for " + CalculateDamage() + " damage");
+                        Debug.Log(actionList.character.name + " Attacked " + hit.collider.gameObject.name + " for " + CalculateDamage() + " damage with " + GetActionName());
                     }
                     else
                     {
@@ -45,5 +44,10 @@ public class SingleTargetAttack : Action
     public override float GetRange()
     {
         return this.meleeRange;
+    }
+
+    public override string GetActionName()
+    {
+        return actionList.character.GetLoadout().GetMelee().weaponName;
     }
 }

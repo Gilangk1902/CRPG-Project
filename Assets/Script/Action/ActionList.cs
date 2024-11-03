@@ -22,19 +22,26 @@ public class ActionList : CharacterBehaviour
 
     public void ChangeSelectedAction()
     {
-        if (Input.GetKeyUp(KeyCode.L))
-        {
-            selectedAction = actions[0];
-            selectedAction.actionList = this;
-            character.party.SetIsWaitingForAction(true);
-            character.setCharacterReachRadiusActive(selectedAction.GetRange());
-        }
-        else if (Input.GetKeyUp(KeyCode.Mouse1))
+        
+        if (Input.GetKeyUp(KeyCode.Mouse1))
         {
             selectedAction = null;
             character.party.SetIsWaitingForAction(false);
             character.setCharacterReachRadiusDeactive();
         }
+    }
+
+    public Action[] GetActions()
+    {
+        return this.actions;
+    }
+
+    public void SetSelectedAction(Action action)
+    {
+        this.selectedAction = action;
+        selectedAction.actionList = this;
+        character.party.SetIsWaitingForAction(true);
+        character.setCharacterReachRadiusActive(selectedAction.GetRange());
     }
 
     public Action GetSelectedAction() { return this.selectedAction; }

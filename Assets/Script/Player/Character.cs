@@ -74,7 +74,6 @@ public class Character : PartyBehaviour
     {
         this.destination = destination;
         setMarker(destination);
-        Debug.Log("test");
     }
 
     public void disableDestinationMarker()

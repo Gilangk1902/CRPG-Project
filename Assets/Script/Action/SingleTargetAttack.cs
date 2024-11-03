@@ -6,6 +6,7 @@ public class SingleTargetAttack : Action
 {
     private int maxTarget = 1;
     private float meleeRange = 2.5f;
+    
     public override void ActionControl()
     {
         if (Input.GetMouseButtonDown(0))
@@ -48,6 +49,6 @@ public class SingleTargetAttack : Action
 
     public override string GetActionName()
     {
-        return actionList.character.GetLoadout().GetMelee().weaponName;
+        return "Melee Attack";
     }
 }

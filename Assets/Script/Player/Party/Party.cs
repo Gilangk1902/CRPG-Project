@@ -7,6 +7,7 @@ public class Party : MonoBehaviour
     [SerializeField] private bool isWaitingForAction;
 
     [SerializeField] private PlayerControl playerControl;
+    [SerializeField] private SkillsUserInterface skillUserInterface;
 
     [SerializeField] private Character selectedCharacter;
     [SerializeField] private Character partySlot1;
@@ -20,6 +21,7 @@ public class Party : MonoBehaviour
         this.selectedCharacter = this.partySlot1;
         selectedCharacter.party= this;
         playerControl.party= this;
+        skillUserInterface.party= this;
     }
     private void Start()
     {
@@ -30,22 +32,32 @@ public class Party : MonoBehaviour
     {
         if(!isWaitingForAction)
         {
-            changeSelectedCharacter();
+            ChangeSelectedCharacter();
         }
     }
 
-    private void changeSelectedCharacter()
+    private void ChangeSelectedCharacter()
     {
         if(Input.GetKeyUp(KeyCode.Alpha1)) { 
             selectedCharacter = partySlot1;
+            skillUserInterface.GenerateSkillButtons();
+            isWaitingForAction = false;
+            selectedCharacter.party = this;
+            playerControl.party = this;
+            skillUserInterface.party = this;
         }        
         if(Input.GetKeyUp(KeyCode.Alpha2))
         {
             selectedCharacter = partySlot2;
+            isWaitingForAction = false;
+            selectedCharacter.party = this;
+            playerControl.party = this;
+            skillUserInterface.party = this;
+            skillUserInterface.GenerateSkillButtons();
         }
     }
 
-    public Character getSelectedCharacter() { return selectedCharacter; }
+    public Character GetSelectedCharacter() { return selectedCharacter; }
 
     public void SetIsWaitingForAction(bool value)
     {

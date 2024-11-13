@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SingleTargetAttack : Action
+public class MeleeAttack : Action
 {
     private int maxTarget = 1;
     private float meleeRange = 2.5f;
@@ -33,7 +33,7 @@ public class SingleTargetAttack : Action
         }
     }
 
-    private int CalculateDamage()
+    public override int CalculateDamage()
     {
         int weaponAttackDie = actionList.character.GetLoadout().GetMelee().attackDie;
         int baseDamage = Random.Range(1, weaponAttackDie + 1);

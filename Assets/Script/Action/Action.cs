@@ -8,4 +8,5 @@ public abstract class Action : ActionListBehaviour
 
     public abstract string GetActionName();
     public abstract float GetRange();
+    public abstract int CalculateDamage();
 }

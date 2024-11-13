@@ -1569,6 +1569,7 @@ GameObject:
   - component: {fileID: 1938169326}
   - component: {fileID: 1938169327}
   - component: {fileID: 1938169328}
+  - component: {fileID: 1938169329}
   m_Layer: 0
   m_Name: Playable1
   m_TagString: Character
@@ -1771,6 +1772,7 @@ MonoBehaviour:
   character: {fileID: 0}
   actions:
   - {fileID: 1938169328}
+  - {fileID: 1938169329}
   selectedAction: {fileID: 0}
 --- !u!114 &1938169328
 MonoBehaviour:
@@ -1782,6 +1784,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0879cda02eb74141a3f9d6ea1949030, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionList: {fileID: 0}
+--- !u!114 &1938169329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938169316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79d8335b90c26d047af20394ea2f57a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   actionList: {fileID: 0}
